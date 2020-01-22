@@ -13,7 +13,8 @@ namespace StartDailyApp
       Action<string> Display = Console.WriteLine;
       // remove unwanted task bar menu items like ie, excel, word, ppt forced by GPO
       // start my daily applications
-      string iconCache = @"C:\Users\KWA960\AppData\Local";
+      string userNameProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+      string iconCache = $@"{userNameProfile}\AppData\Local";
       try
       {
         if (File.Exists(iconCache))
@@ -26,7 +27,7 @@ namespace StartDailyApp
         Display("error while trying to delete the file ");
       }
 
-      string userNameProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+      
       var test = $@"{ userNameProfile}\Documents\RDPManager.rdg";
       StartProcess($@"{userNameProfile}\Documents\RDPManager.rdg");
       StartProcess(@"C:\Program Files (x86)\Microsoft Office\root\Office16\outlook.exe");
