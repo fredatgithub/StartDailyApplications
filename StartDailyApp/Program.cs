@@ -24,17 +24,46 @@ namespace StartDailyApp
       }
       catch (Exception)
       {
-        Display("error while trying to delete the file ");
+        Display($"error while trying to delete the file {iconCache}");
       }
 
+      // RDP manager
+      string RdpManager = $@"{userNameProfile}\Documents\RDPManager.rdg";
+      if (File.Exists(RdpManager))
+      {
+        StartProcess(RdpManager);
+      }
+
+      string office2016 = @"C:\Program Files (x86)\Microsoft Office\root\Office16\outlook.exe";
+      if (File.Exists(office2016))
+      {
+        StartProcess(office2016);
+      }
+
+      string ssms = @"C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\ssms.exe";
+      if (File.Exists(ssms))
+      {
+        StartProcess(ssms);
+      }
+
+      string vs2017 = @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\DEVENV.exe";
+      if (File.Exists(vs2017))
+      {
+        StartProcess(vs2017);
+      }
+
+      string explorer = @"C:\Windows\explorer.exe";
+      if (File.Exists(explorer))
+      {
+        StartProcess(explorer);
+      }
+
+      string firefox = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+      if (File.Exists(firefox))
+      {
+        StartProcess(firefox);
+      }
       
-      var test = $@"{ userNameProfile}\Documents\RDPManager.rdg";
-      StartProcess($@"{userNameProfile}\Documents\RDPManager.rdg");
-      StartProcess(@"C:\Program Files (x86)\Microsoft Office\root\Office16\outlook.exe");
-      StartProcess(@"C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\ssms.exe");
-      StartProcess(@"C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\DEVENV.exe");
-      StartProcess(@"C:\Windows\explorer.exe");
-      StartProcess(@"C:\Program Files\Mozilla Firefox\firefox.exe");
 
       Display("Press any key to exit:");
       Console.ReadKey();
