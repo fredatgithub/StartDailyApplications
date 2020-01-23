@@ -18,7 +18,6 @@ namespace StartDailyApp
       // remove unwanted task bar menu items like ie, excel, word, ppt forced by GPO
       // start my daily applications
       string userNameProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-      //C:\Users\user1\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar
       string taskBar = $@"{userNameProfile}\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar";
       string excel = Path.Combine(taskBar, "Excel");
       string ie11 = Path.Combine(taskBar, "iexplore");
@@ -31,10 +30,14 @@ namespace StartDailyApp
           File.Delete(excel);
           Display("Excel shorcut in the taskbar deleted");
         }
+        else
+        {
+          Display("No Excel shorcut in the taskbar found");
+        }
       }
       catch (Exception)
       {
-        Display("No Excel shorcut in the taskbar found");
+        Display("Excel shorcut in the taskbar could not be deleted");
       }
 
       try
@@ -44,10 +47,14 @@ namespace StartDailyApp
           File.Delete(ie11);
           Display("iExplore shorcut in the taskbar deleted");
         }
+        else
+        {
+          Display("No iExplore shorcut in the taskbar found");
+        }
       }
       catch (Exception)
       {
-        Display("No iExplore shorcut in the taskbar found");
+        Display("iExplore shorcut in the taskbar could not be deleted");
       }
 
       try
@@ -59,12 +66,12 @@ namespace StartDailyApp
         }
         else
         {
-
+          Display("No Word shorcut in the taskbar found");
         }
       }
       catch (Exception)
       {
-        Display("No Word shorcut in the taskbar found");
+        Display("Word shorcut in the taskbar could not be deleted");
       }
 
       try
@@ -74,10 +81,14 @@ namespace StartDailyApp
           File.Delete(ppt);
           Display("PowerPoint shorcut in the taskbar deleted");
         }
+        else
+        {
+          Display("No PowerPoint shorcut in the taskbar found");
+        }
       }
       catch (Exception)
       {
-        Display("No PowerPoint shorcut in the taskbar found");
+        Display("PowerPoint shorcut in the taskbar could not be deleted");
       }
 
       //string iconCache = $@"{userNameProfile}\AppData\Local";
