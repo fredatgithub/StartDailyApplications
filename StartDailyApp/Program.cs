@@ -1,8 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-
+using System.Linq;
 
 namespace StartDailyApp
 {
@@ -19,11 +20,12 @@ namespace StartDailyApp
       // start my daily applications
       string userNameProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
       string taskBar = $@"{userNameProfile}\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar";
-      string excel = Path.Combine(taskBar, "Excel");
-      string ie11 = Path.Combine(taskBar, "Internet Explorer 11");
-      string word = Path.Combine(taskBar, "Word");
-      string ppt = Path.Combine(taskBar, "PowerPoint");
-      string chrome = Path.Combine(taskBar, "Google Chrome (2)");
+      var listOfShortcutsFromTaskBar = GetFilesToDepth(taskBar, 1);
+      string excel = Path.Combine(taskBar, "Excel.lnk");
+      string ie11 = Path.Combine(taskBar, "Internet Explorer 11.lnk");
+      string word = Path.Combine(taskBar, "Word.lnk");
+      string ppt = Path.Combine(taskBar, "PowerPoint.lnk");
+      string chrome = Path.Combine(taskBar, "Google Chrome (2).lnk");
       try
       {
         if (File.Exists(excel))
@@ -199,6 +201,23 @@ namespace StartDailyApp
       Console.ForegroundColor = ConsoleColor.White;
       Display("Press any key to exit:");
       Console.ReadKey();
+    }
+
+    public static IList<string> GetFilesToDepth(string path, int depth)
+    {
+      var files = Directory.EnumerateFiles(path).ToList();
+
+      if (depth > 0)
+      {
+        var folders = Directory.EnumerateDirectories(path);
+
+        foreach (var folder in folders)
+        {
+          files.AddRange(GetFilesToDepth(folder, depth - 1));
+        }
+      }
+
+      return files;
     }
 
     public static void StartProcess(string applicationExe, string arguments = "", bool useShellExecute = true, bool createNoWindow = false)
