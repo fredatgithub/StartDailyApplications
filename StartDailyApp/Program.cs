@@ -20,9 +20,10 @@ namespace StartDailyApp
       string userNameProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
       string taskBar = $@"{userNameProfile}\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar";
       string excel = Path.Combine(taskBar, "Excel");
-      string ie11 = Path.Combine(taskBar, "iexplore");
+      string ie11 = Path.Combine(taskBar, "Internet Explorer 11");
       string word = Path.Combine(taskBar, "Word");
       string ppt = Path.Combine(taskBar, "PowerPoint");
+      string chrome = Path.Combine(taskBar, "Google Chrome (2)");
       try
       {
         if (File.Exists(excel))
@@ -236,5 +237,4 @@ namespace StartDailyApp
       return result;
     }
   }
-
 }
