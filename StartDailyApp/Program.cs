@@ -37,11 +37,13 @@ namespace StartDailyApp
             File.Delete(file);
             Console.ForegroundColor = ConsoleColor.Red;
             Display($"link found and deleted: {file}");
+            Display("");
           }
           else
           {
             Console.ForegroundColor = ConsoleColor.Green;
             Display($"link found but not deleted: {file}");
+            Display("");
           }
         }
       }
@@ -54,6 +56,7 @@ namespace StartDailyApp
         if (File.Exists(excel))
         {
           File.Delete(excel);
+          Console.ForegroundColor = ConsoleColor.Green;
           Display("Excel shorcut in the taskbar deleted");
         }
         else
