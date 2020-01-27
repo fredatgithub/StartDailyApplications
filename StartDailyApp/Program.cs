@@ -26,6 +26,29 @@ namespace StartDailyApp
       string word = Path.Combine(taskBar, "Word.lnk");
       string ppt = Path.Combine(taskBar, "PowerPoint.lnk");
       string chrome = Path.Combine(taskBar, "Google Chrome (2).lnk");
+      DirectoryInfo directoryInfo = new DirectoryInfo(taskBar);
+      List<string> lnkFiles = GetFilesFileteredBySize(directoryInfo, 1);
+      try
+      {
+        foreach (string file in lnkFiles)
+        {
+          if (file == excel || file == ie11 || file == word || file == ppt || file == chrome)
+          {
+            File.Delete(file);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Display($"link found and deleted: {file}");
+          }
+          else
+          {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Display($"link found but not deleted: {file}");
+          }
+        }
+      }
+      catch (Exception)
+      {
+      }
+
       try
       {
         if (File.Exists(excel))
@@ -234,6 +257,20 @@ namespace StartDailyApp
       };
 
       task.Start();
+    }
+
+    public static List<string> GetFilesFileteredBySize(DirectoryInfo directoryInfo, long sizeGreaterOrEqualTo)
+    {
+      List<string> result = new List<string>();
+      foreach (FileInfo fileInfo in directoryInfo.GetFiles())
+      {
+        if (fileInfo.Length >= sizeGreaterOrEqualTo)
+        {
+          result.Add(fileInfo.FullName);
+        }
+      }
+
+      return result;
     }
 
     public static bool DeleteRegistryKey(string keyPath, string keyName)
