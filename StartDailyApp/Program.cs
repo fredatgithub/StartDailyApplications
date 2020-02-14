@@ -34,7 +34,7 @@ namespace StartDailyApp
         {
           if (file == excel || file == ie11 || file == word || file == ppt || file == chrome)
           {
-            File.Delete(file);
+            //File.Delete(file); //not anymore
             Console.ForegroundColor = ConsoleColor.Red;
             Display($"link found and deleted: {file}");
             Display("");
