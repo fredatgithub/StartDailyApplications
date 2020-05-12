@@ -120,19 +120,6 @@ namespace StartDailyApp
         Display("PowerPoint shorcut in the taskbar could not be deleted");
       }
 
-      //string iconCache = $@"{userNameProfile}\AppData\Local";
-      //try
-      //{
-      //  if (File.Exists(iconCache))
-      //  {
-      //    File.Delete(iconCache);
-      //  }
-      //}
-      //catch (Exception)
-      //{
-      //  Display($"error while trying to delete the file {iconCache}");
-      //}
-
       // RDP manager
       string RdpManager = $@"{userNameProfile}\Documents\RDPManager.rdg";
       if (File.Exists(RdpManager))
@@ -179,10 +166,10 @@ namespace StartDailyApp
         Display("");
       }
 
-      string vs2017 = @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\DEVENV.exe";
-      if (File.Exists(vs2017))
+      string vs2019 = @"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\DEVENV.exe";
+      if (File.Exists(vs2019))
       {
-        StartProcess(vs2017);
+        StartProcess(vs2019);
         Console.ForegroundColor = ConsoleColor.Green;
         Display("Visual Studio 2017 has been started");
         Display("");
